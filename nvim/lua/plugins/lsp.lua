@@ -112,17 +112,6 @@ return {
     },
   },
   {
-    "simrat39/symbols-outline.nvim",
-    opts = {
-      -- relate_width = false,
-      width = 24,
-    },
-    keys = {
-      -- { "<leader>ls", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" },
-      { "<leader>cs", false },
-    },
-  },
-  {
     "glepnir/lspsaga.nvim",
     event = "LazyFile",
     config = function()
