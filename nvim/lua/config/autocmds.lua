@@ -97,7 +97,10 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     ]])
   end,
 })
-vim.cmd([[
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.cmd([[
       hi! link FloatBorder Normal
       hi! link NormalFloat Normal
       hi DapBreakpoint guifg='#993939'
@@ -131,3 +134,5 @@ vim.cmd([[
       hi! link DiagnosticFloatingHint  DiagnosticHint
       hi! link DiagnosticFloatingOk  DiagnosticOk
     ]])
+  end,
+})
