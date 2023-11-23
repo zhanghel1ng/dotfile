@@ -97,10 +97,46 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     ]])
   end,
 })
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  pattern = { "*" },
-  callback = function()
-    vim.cmd([[
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+--   pattern = { "*" },
+--   callback = function()
+--     vim.cmd([[
+--       hi! link FloatBorder Normal
+--       hi! link NormalFloat Normal
+--       hi DapBreakpoint guifg='#993939'
+--       hi! link WinSeparator Normal
+--       hi! link NoiceCmdlinePopupBorder Normal
+--       hi! link NoiceCmdlinePopupTitle Normal
+--       hi! link NoiceCmdlineIcon Normal
+--       hi DiagnosticSignHint guifg='#FFD700'
+--       hi DiagnosticSignError guifg='#f85149'
+--       hi DiagnosticSignWarn guifg='#d29922'
+--       hi DiagnosticSignInfo guifg=#2f81f7
+--       hi DiagnosticSignOk guifg=LightGreen
+--       hi DiagnosticError guifg=#f85149
+--       hi DiagnosticWarn guifg=#d29922
+--       hi DiagnosticInfo guifg=#2f81f7
+--       hi DiagnosticHint guifg=#FFD700
+--       hi DiagnosticOk ctermfg=10 guifg=LightGreen
+--       hi DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=#f85149
+--       hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=#d29922
+--       hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl guisp=#2f81f7
+--       hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=#FFD700
+--       hi DiagnosticUnderlineOk cterm=underline gui=underline guisp=LightGreen
+--       hi DiagnosticVirtualTextError guifg=#f85149
+--       hi DiagnosticVirtualTextWarn guifg=#d29922
+--       hi DiagnosticVirtualTextInfo guifg=#2f81f7
+--       hi DiagnosticVirtualTextHint guifg=#FFD700
+--       hi! link DiagnosticVirtualTextOk DiagnosticOk
+--       hi! link DiagnosticFloatingError DiagnosticError
+--       hi! link DiagnosticFloatingWarn  DiagnosticWarn
+--       hi! link DiagnosticFloatingInfo  DiagnosticInfo
+--       hi! link DiagnosticFloatingHint  DiagnosticHint
+--       hi! link DiagnosticFloatingOk  DiagnosticOk
+--     ]])
+--   end,
+-- })
+vim.cmd([[
       hi! link FloatBorder Normal
       hi! link NormalFloat Normal
       hi DapBreakpoint guifg='#993939'
@@ -134,5 +170,3 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
       hi! link DiagnosticFloatingHint  DiagnosticHint
       hi! link DiagnosticFloatingOk  DiagnosticOk
     ]])
-  end,
-})
