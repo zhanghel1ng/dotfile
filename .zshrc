@@ -115,7 +115,7 @@ export PATH=$(echo "$PATH" | sed -e 's/:\/mnt[^:]*//g') # strip out problematic 
 WINDOWS_USERNAME="zhang"
 
 export PATH="$PATH:/mnt/c/Windows/System32:/mnt/c/Users/${WINDOWS_USERNAME}/AppData/Local/Programs/Microsoft VS Code/bin"
-export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/workspace/go/bin"
 export PATH="$PATH:/usr/racket/bin"
 export PATH="$PATH:/home/zhang/.local/share/nvim/mason/bin"
 export EDITOR="vim"

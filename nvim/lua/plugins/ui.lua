@@ -122,7 +122,14 @@ return {
     end,
   },
   { "dracula/vim", lazy = true },
-  { "sainnhe/everforest", lazy = true },
+  {
+    "sainnhe/everforest",
+    lazy = true,
+    config = function()
+      vim.g.everforest_sign_column_background = "none"
+      vim.g.everforest_disable_italic_comment = 1
+    end,
+  },
   { "sainnhe/gruvbox-material", lazy = true },
   {
     "norcalli/nvim-colorizer.lua",

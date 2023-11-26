@@ -56,20 +56,20 @@ return {
       end
       keys[#keys + 1] = { "<leader>ll", "<cmd>LspInfo<cr>", desc = "Lsp Info" }
 
-      keys[#keys + 1] = {
-        "gd",
-        "<cmd>Lspsaga goto_definition<cr>",
-        desc = "Goto Definition",
-        has = "definition",
-      }
-      keys[#keys + 1] = { "gr", "<cmd>Lspsaga finder<cr>", desc = "References" }
-      keys[#keys + 1] = { "gD", "<cmd>Lspsaga peek_definition<cr>", desc = "Goto Declaration" }
-      keys[#keys + 1] = { "gI", "<cmd>Lspsaga finder imp<cr>", desc = "Goto Implementation" }
-      keys[#keys + 1] = {
-        "gy",
-        "<cmd>Lspsaga goto_type_definition<cr>",
-        desc = "Goto T[y]pe Definition",
-      }
+      -- keys[#keys + 1] = {
+      --   "gd",
+      --   "<cmd>Lspsaga goto_definition<cr>",
+      --   desc = "Goto Definition",
+      --   has = "definition",
+      -- }
+      -- keys[#keys + 1] = { "gr", "<cmd>Lspsaga finder<cr>", desc = "References" }
+      -- keys[#keys + 1] = { "gD", "<cmd>Lspsaga peek_definition<cr>", desc = "Goto Declaration" }
+      -- keys[#keys + 1] = { "gI", "<cmd>Lspsaga finder imp<cr>", desc = "Goto Implementation" }
+      -- keys[#keys + 1] = {
+      --   "gy",
+      --   "<cmd>Lspsaga goto_type_definition<cr>",
+      --   desc = "Goto T[y]pe Definition",
+      -- }
     end,
     opts = {
       inlay_hints = {
