@@ -13,7 +13,7 @@ return {
       require("notify").setup({
         background_colour = "Normal",
       })
-      opts.presets.lsp_doc_border = true
+      -- opts.presets.lsp_doc_border = true
     end,
   },
 
@@ -162,6 +162,9 @@ return {
       icons = {
         diagnostics = {
           Hint = "󰌵 ",
+        },
+        dap = {
+          Breakpoint = "",
         },
       },
     },

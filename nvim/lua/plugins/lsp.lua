@@ -142,12 +142,19 @@ return {
           },
         },
         outline = {
-          auto_preview = false
-        }
+          auto_preview = false,
+        },
       })
     end,
     -- keys = {
     --   { "<leader>ls", "<cmd>Lspsaga outline<cr>", desc = "Outline" },
     -- },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        vim.list_extend(opts.ensure_installed, { "rust", "go", "css", "scss", "sass", "html", "vue" })
+      end,
+    },
   },
 }

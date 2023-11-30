@@ -62,8 +62,8 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   pattern = { "*" },
   callback = function()
     vim.cmd([[
-      hi! link FloatBorder Normal
-      hi! link NormalFloat Normal
+      " hi! link FloatBorder Normal
+      " hi! link NormalFloat Normal
       hi DapBreakpoint guifg='#993939'
       hi! link WinSeparator Normal
       hi! link NoiceCmdlinePopupBorder Normal
@@ -137,8 +137,8 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 --   end,
 -- })
 vim.cmd([[
-      hi! link FloatBorder Normal
-      hi! link NormalFloat Normal
+      " hi! link FloatBorder Normal
+      " hi! link NormalFloat Normal
       hi DapBreakpoint guifg='#993939'
       hi! link WinSeparator Normal
       hi! link NoiceCmdlinePopupBorder Normal
