@@ -1,13 +1,11 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "pyright",
-        "shfmt",
-        "stylua",
-      },
-    },
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      local lsps = { "pyright", "typescript-language-server", "clangd", "html-lsp", "css-lsp", "codelldb" }
+      vim.list_extend(opts.ensure_installed, lsps)
+    end,
     keys = {
       { "<leader>lm", "<cmd>Mason<cr>", desc = "Mason" },
       { "<leader>cm", false },
@@ -153,7 +151,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       opts = function(_, opts)
         opts.ensure_installed = opts.ensure_installed or {}
-        vim.list_extend(opts.ensure_installed, { "rust", "go", "css", "scss", "sass", "html", "vue" })
+        vim.list_extend(opts.ensure_installed, { "rust", "go", "css", "scss", "html", "vue" })
       end,
     },
   },
