@@ -1,7 +1,13 @@
 return {
   {
     "folke/noice.nvim",
-    enabled = true,
+    enabled = function()
+      if vim.g.neovide then
+        return false
+      else
+        return true
+      end
+    end,
     opts = function(_, opts)
       -- table.insert(opts.routes, {
       --   filter = {
@@ -16,7 +22,6 @@ return {
       -- opts.presets.lsp_doc_border = true
     end,
   },
-
   {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
@@ -156,9 +161,12 @@ return {
     end,
   },
   {
+    "onsails/lspkind.nvim",
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "everforest",
       icons = {
         diagnostics = {
           Hint = "󰌵 ",
@@ -166,6 +174,33 @@ return {
         dap = {
           Breakpoint = "",
         },
+        -- kinds = {
+        --   Text = "  ",
+        --   Method = "  ",
+        --   Function = "  ",
+        --   Constructor = "  ",
+        --   Field = "  ",
+        --   Variable = "  ",
+        --   Class = "  ",
+        --   Interface = "  ",
+        --   Module = "  ",
+        --   Property = "  ",
+        --   Unit = "  ",
+        --   Value = "  ",
+        --   Enum = "  ",
+        --   Keyword = "  ",
+        --   Snippet = "  ",
+        --   Color = "  ",
+        --   File = "  ",
+        --   Reference = "  ",
+        --   Folder = "  ",
+        --   EnumMember = "  ",
+        --   Constant = "  ",
+        --   Struct = "  ",
+        --   Event = "  ",
+        --   Operator = "  ",
+        --   TypeParameter = "  ",
+        -- },
       },
     },
   },

@@ -147,12 +147,56 @@ return {
     -- keys = {
     --   { "<leader>ls", "<cmd>Lspsaga outline<cr>", desc = "Outline" },
     -- },
-    {
-      "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts)
-        opts.ensure_installed = opts.ensure_installed or {}
-        vim.list_extend(opts.ensure_installed, { "rust", "go", "css", "scss", "html", "vue" })
-      end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "rust", "go", "css", "scss", "html", "vue" })
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      local lspkind = require("lspkind")
+      lspkind.init({
+        -- symbol_map = require("lazyvim.config").icons.kinds
+        -- preset = 'codicons',
+      })
+      -- opts.formatting = {
+      --   format = function(entry, item)
+      --     print(entry.source)
+      --     local icons = require("lazyvim.config").icons.kinds
+      --     item.menu = ""
+      --     if icons[item.kind] then
+      --       item.kind = icons[item.kind] .. item.kind
+      --     end
+      --     return item
+      --   end,
+      -- }
+      opts.formatting.format = lspkind.cmp_format({
+        with_text = true,
+        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+
+        -- The function below will be called before any actual modifications from lspkind
+        -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+        before = function(_, vim_item)
+          -- vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+          vim_item.menu = ""
+          return vim_item
+        end,
+      })
+    end,
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    opts = {
+      tools = {
+        inlay_hints = {
+          auto = false,
+        },
+      },
     },
   },
 }
