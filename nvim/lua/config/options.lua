@@ -6,6 +6,9 @@ opt.showmatch=true
 opt.autoindent = true
 opt.smartindent = true
 opt.clipboard = ""
+opt.signcolumn = "no"
+opt.relativenumber = false
+-- opt.cursorline = false
 
 if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0

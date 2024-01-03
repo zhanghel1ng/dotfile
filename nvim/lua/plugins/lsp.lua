@@ -21,8 +21,10 @@ return {
       keys[#keys + 1] = { "<leader>cr", false }
       keys[#keys + 1] = { "<leader>cl", false }
       -- add
+      -- keys[#keys + 1] =
+      --   { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
       keys[#keys + 1] =
-        { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
+        { "<leader>la", "<cmd>LspUI code_action<cr>", desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
       keys[#keys + 1] = {
         "<leader>lA",
         function()
@@ -53,6 +55,14 @@ return {
         keys[#keys + 1] = { "<leader>lr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
       end
       keys[#keys + 1] = { "<leader>ll", "<cmd>LspInfo<cr>", desc = "Lsp Info" }
+      keys[#keys + 1] = { "gd", vim.lsp.buf.definition, desc = "Goto Definition", has = "definition" }
+      keys[#keys + 1] = { "gr", vim.lsp.buf.references, desc = "References" }
+      keys[#keys + 1] = { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" }
+      keys[#keys + 1] = { "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" }
+      keys[#keys + 1] = { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" }
+      keys[#keys + 1] = { "K", vim.lsp.buf.hover, desc = "Hover" }
+      -- keys[#keys + 1] = { "K", "<cmd>LspUI hover<cr>", desc = "Hover" }
+      keys[#keys + 1] = { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" }
 
       -- keys[#keys + 1] = {
       --   "gd",
@@ -110,8 +120,19 @@ return {
     },
   },
   {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+  },
+  {
+    "junegunn/fzf",
+    build = function()
+      vim.fn["fzf#install"]()
+    end,
+  },
+  {
     "glepnir/lspsaga.nvim",
     event = "LazyFile",
+    enabled = false,
     config = function()
       require("lspsaga").setup({
         symbol_in_winbar = {
@@ -127,7 +148,7 @@ return {
           click_support = false,
         },
         lightbulb = {
-          virtual_text = false,
+          virtual_text = true,
         },
         ui = {
           code_action = "󰌵",
@@ -147,6 +168,26 @@ return {
     -- keys = {
     --   { "<leader>ls", "<cmd>Lspsaga outline<cr>", desc = "Outline" },
     -- },
+  },
+  {
+    "jinzhongjia/LspUI.nvim",
+    branch = "main",
+    event = "LazyFile",
+    enabled = false,
+    config = function()
+      require("LspUI").setup({
+        -- config options go here
+        lightbulb = {
+          enable = true,
+          -- icon = "🍃",
+          -- icon = "🔔"
+          -- icon = "🍀"
+          -- icon = "☘️⭐️"
+          -- icon = "🐇🐱⭐️"
+          -- icon = "🦴"
+        },
+      })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -188,6 +229,11 @@ return {
         end,
       })
     end,
+  },
+  {
+    "lukas-reineke/headlines.nvim",
+    enabled = false,
+    opts = {},
   },
   {
     "simrat39/rust-tools.nvim",
