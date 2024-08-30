@@ -9,8 +9,6 @@ del("n", "<leader>l")
 del("n", "<leader>L")
 del({ "n", "v" }, "<leader>cf")
 del("n", "<leader>cd")
-del("n","[d")
-del("n","]d")
 
 set("n", "<leader>a", "<cmd>Lazy<cr>", { desc = "Lazy" })
 set("n", "<leader>A", function()
@@ -23,8 +21,6 @@ set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 set("n", "<leader>pp", "<cmd>TransparentToggle<cr>", { desc = "toggle transparent" })
 -- set("n", "<leader>ls", "<cmd>Lspsaga outline<cr>", { desc = "Outline" })
 
-set("n", "]d", "<cmd>LspUI diagnostic next<cr>", { desc = "Next Diagnostic" })
-set("n", "[d", "<cmd>LspUI diagnostic prev<cr>", { desc = "Next Diagnostic" })
 local wk = require("which-key")
 wk.register({
   l = { name = "lsp" },

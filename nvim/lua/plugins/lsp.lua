@@ -13,7 +13,9 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    init = function()
+    event = "LazyFile",
+    init = function() end,
+    opts = function(_, opts)
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- disable
       keys[#keys + 1] = { "<leader>ca", false }
@@ -21,10 +23,10 @@ return {
       keys[#keys + 1] = { "<leader>cr", false }
       keys[#keys + 1] = { "<leader>cl", false }
       -- add
-      -- keys[#keys + 1] =
-      --   { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
       keys[#keys + 1] =
-        { "<leader>la", "<cmd>LspUI code_action<cr>", desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
+        { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
+      -- keys[#keys + 1] =
+      --   { "<leader>la", "<cmd>LspUI code_action<cr>", desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
       keys[#keys + 1] = {
         "<leader>lA",
         function()
@@ -78,26 +80,14 @@ return {
       --   "<cmd>Lspsaga goto_type_definition<cr>",
       --   desc = "Goto T[y]pe Definition",
       -- }
-    end,
-    opts = {
-      inlay_hints = {
-        enabled = true,
-      },
-      servers = {
-        tsserver = {},
-        vuels = {},
-        gopls = {
-          mason = false,
-        },
+      opts.servers = vim.tbl_deep_extend("force", opts.servers, {
         html = {},
         cssls = {},
-        rust_analyzer = {
-          mason = false,
-        },
         clangd = {},
         pyright = {},
-      },
-    },
+      })
+      opts.servers["vuels"] = nil
+    end,
   },
   {
     "smjonas/inc-rename.nvim",
@@ -106,6 +96,8 @@ return {
   },
   {
     "stevearc/conform.nvim",
+    lazy = true,
+    cmd = "ConformInfo",
     optional = true,
     keys = {
       {
@@ -125,72 +117,14 @@ return {
   },
   {
     "junegunn/fzf",
+    ft = "qf",
     build = function()
       vim.fn["fzf#install"]()
     end,
   },
   {
-    "glepnir/lspsaga.nvim",
-    event = "LazyFile",
-    enabled = false,
-    config = function()
-      require("lspsaga").setup({
-        symbol_in_winbar = {
-          in_custom = false,
-          enable = false,
-          separator = " ",
-          show_file = true,
-          -- define how to customize filename, eg: %:., %
-          -- if not set, use default value `%:t`
-          -- more information see `vim.fn.expand` or `expand`
-          -- ## only valid after set `show_file = true`
-          file_formatter = "",
-          click_support = false,
-        },
-        lightbulb = {
-          virtual_text = true,
-        },
-        ui = {
-          code_action = "󰌵",
-          -- lines = { "└", "├", "│", "─", "┌" },
-          lines = { "", "", "│", "", "" },
-        },
-        finder = {
-          methods = {
-            tyd = "textDocument/typeDefinition",
-          },
-        },
-        outline = {
-          auto_preview = false,
-        },
-      })
-    end,
-    -- keys = {
-    --   { "<leader>ls", "<cmd>Lspsaga outline<cr>", desc = "Outline" },
-    -- },
-  },
-  {
-    "jinzhongjia/LspUI.nvim",
-    branch = "main",
-    event = "LazyFile",
-    enabled = false,
-    config = function()
-      require("LspUI").setup({
-        -- config options go here
-        lightbulb = {
-          enable = true,
-          -- icon = "🍃",
-          -- icon = "🔔"
-          -- icon = "🍀"
-          -- icon = "☘️⭐️"
-          -- icon = "🐇🐱⭐️"
-          -- icon = "🦴"
-        },
-      })
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
+    event = { "LazyFile", "VeryLazy" },
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, { "rust", "go", "css", "scss", "html", "vue" })
@@ -198,6 +132,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     opts = function(_, opts)
       local lspkind = require("lspkind")
       lspkind.init({
@@ -236,12 +171,28 @@ return {
     opts = {},
   },
   {
-    "simrat39/rust-tools.nvim",
+    "folke/neoconf.nvim",
+    enabled = false,
+  },
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    enabled = false,
     opts = {
-      tools = {
-        inlay_hints = {
-          auto = false,
-        },
+      code = {
+        enabled = true,
+        sign = false,
+        style = "normal",
+        position = "left",
+        disable_background = { "diff" },
+        width = "full",
+        left_pad = 0,
+        right_pad = 0,
+        min_width = 0,
+        border = "thin",
+        above = "▄",
+        below = "▀",
+        highlight = "RenderMarkdownCode",
+        highlight_inline = "RenderMarkdownCodeInline",
       },
     },
   },

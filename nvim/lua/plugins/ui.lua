@@ -1,13 +1,14 @@
 return {
   {
     "folke/noice.nvim",
-    enabled = function()
-      if vim.g.neovide then
-        return false
-      else
-        return true
-      end
-    end,
+    event = "VeryLazy",
+    -- enabled = function()
+    --   if vim.g.neovide then
+    --     return false
+    --   else
+    --     return true
+    --   end
+    -- end,
     opts = function(_, opts)
       -- table.insert(opts.routes, {
       --   filter = {
@@ -19,12 +20,12 @@ return {
       require("notify").setup({
         background_colour = "Normal",
       })
-      opts.presets.lsp_doc_border = true
+      opts.presets.lsp_doc_border = false
     end,
   },
   {
     "gmr458/vscode_modern_theme.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
       require("vscode_modern").setup({
@@ -36,6 +37,7 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
+    lazy = true,
     config = function()
       require("kanagawa").setup({
         compile = false, -- enable compiling the colorscheme
@@ -65,7 +67,7 @@ return {
   },
   {
     "catppuccin/nvim",
-    name = "catppuccin",
+    lazy = true,
     opts = {
       flavour = "mocha",
       term_colors = true,
@@ -141,6 +143,8 @@ return {
         code_style = {
           comments = "none",
         },
+        toggle_style_key = "<leader>uo", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+        toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- L
       })
     end,
   },
@@ -150,7 +154,7 @@ return {
   { "NLKNguyen/papercolor-theme", lazy = true },
   {
     "liuchengxu/space-vim-dark",
-    -- lazy = true,
+    lazy = true,
   },
   { "sainnhe/edge", lazy = true },
   { "B4mbus/oxocarbon-lua.nvim", lazy = true },
@@ -223,6 +227,7 @@ return {
   { "sainnhe/gruvbox-material", lazy = true },
   {
     "norcalli/nvim-colorizer.lua",
+    ft = { "vue", "css", "html", "js", "ts", "lua" },
     config = function()
       require("colorizer").setup()
     end,
@@ -232,14 +237,12 @@ return {
     event = "vimEnter",
     opts = function(_, opts)
       local logo = [[
-
 ██╗   ██╗███████╗ ██████╗ ██████╗ ██████╗ ███████╗
 ██║   ██║██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝
 ██║   ██║███████╗██║     ██║   ██║██║  ██║█████╗  
 ╚██╗ ██╔╝╚════██║██║     ██║   ██║██║  ██║██╔══╝  
  ╚████╔╝ ███████║╚██████╗╚██████╔╝██████╔╝███████╗
   ╚═══╝  ╚══════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
-                                                  
     ]]
       logo = string.rep("\n", 8) .. logo .. "\n\n"
       opts.config.header = vim.split(logo, "\n")
@@ -247,12 +250,14 @@ return {
   },
   {
     "onsails/lspkind.nvim",
+    lazy = true,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "vscode_modern",
-      -- colorscheme = "gruvbox",
+      -- colorscheme = "catppuccin",
+      colorscheme = "gruvbox",
+      -- colorscheme = "everforest",
       icons = {
         diagnostics = {
           Hint = "󰌵 ",
