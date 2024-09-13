@@ -220,8 +220,8 @@ return {
     "sainnhe/everforest",
     lazy = true,
     config = function()
-      vim.g.everforest_sign_column_background = "none"
       vim.g.everforest_disable_italic_comment = 1
+      vim.g.everforest_cursor = "red"
     end,
   },
   { "sainnhe/gruvbox-material", lazy = true },
@@ -256,8 +256,7 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "catppuccin",
-      colorscheme = "gruvbox",
-      -- colorscheme = "everforest",
+      colorscheme = "everforest",
       icons = {
         diagnostics = {
           Hint = "󰌵 ",

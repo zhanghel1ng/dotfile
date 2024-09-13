@@ -8,8 +8,10 @@ opt.smartindent = true
 opt.clipboard = ""
 -- opt.signcolumn = "no"
 opt.relativenumber = false
+opt.jumpoptions = "stack"
 -- opt.cursorline = false
-
+-- vim.g.lazyvim_python_lsp = "basedpyright"
+-- vim.g.lazyvim_python_ruff = "ruff_lsp"
 if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0
   vim.o.guifont = "JetBrainsMono Nerd Font:h11"

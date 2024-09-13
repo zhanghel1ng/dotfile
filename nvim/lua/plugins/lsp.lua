@@ -3,7 +3,7 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      local lsps = { "pyright", "typescript-language-server", "clangd", "html-lsp", "css-lsp", "codelldb" }
+      local lsps = { "typescript-language-server", "clangd", "html-lsp", "css-lsp", "codelldb" }
       vim.list_extend(opts.ensure_installed, lsps)
     end,
     keys = {
@@ -18,45 +18,45 @@ return {
     opts = function(_, opts)
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- disable
-      keys[#keys + 1] = { "<leader>ca", false }
-      keys[#keys + 1] = { "<leader>cA", false }
-      keys[#keys + 1] = { "<leader>cr", false }
-      keys[#keys + 1] = { "<leader>cl", false }
+      -- keys[#keys + 1] = { "<leader>ca", false }
+      -- keys[#keys + 1] = { "<leader>cA", false }
+      -- keys[#keys + 1] = { "<leader>cr", false }
+      -- keys[#keys + 1] = { "<leader>cl", false }
       -- add
-      keys[#keys + 1] =
-        { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
       -- keys[#keys + 1] =
-      --   { "<leader>la", "<cmd>LspUI code_action<cr>", desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
-      keys[#keys + 1] = {
-        "<leader>lA",
-        function()
-          vim.lsp.buf.code_action({
-            context = {
-              only = {
-                "source",
-              },
-              diagnostics = {},
-            },
-          })
-        end,
-        desc = "Source Action",
-        has = "codeAction",
-      }
-      if require("lazyvim.util").has("inc-rename.nvim") then
-        keys[#keys + 1] = {
-          "<leader>lr",
-          function()
-            local inc_rename = require("inc_rename")
-            return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
-          end,
-          expr = true,
-          desc = "Rename",
-          has = "rename",
-        }
-      else
-        keys[#keys + 1] = { "<leader>lr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
-      end
-      keys[#keys + 1] = { "<leader>ll", "<cmd>LspInfo<cr>", desc = "Lsp Info" }
+      --   { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
+      -- -- keys[#keys + 1] =
+      -- --   { "<leader>la", "<cmd>LspUI code_action<cr>", desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
+      -- keys[#keys + 1] = {
+      --   "<leader>lA",
+      --   function()
+      --     vim.lsp.buf.code_action({
+      --       context = {
+      --         only = {
+      --           "source",
+      --         },
+      --         diagnostics = {},
+      --       },
+      --     })
+      --   end,
+      --   desc = "Source Action",
+      --   has = "codeAction",
+      -- }
+      -- if require("lazyvim.util").has("inc-rename.nvim") then
+      --   keys[#keys + 1] = {
+      --     "<leader>lr",
+      --     function()
+      --       local inc_rename = require("inc_rename")
+      --       return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+      --     end,
+      --     expr = true,
+      --     desc = "Rename",
+      --     has = "rename",
+      --   }
+      -- else
+      --   keys[#keys + 1] = { "<leader>lr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
+      -- end
+      -- keys[#keys + 1] = { "<leader>ll", "<cmd>LspInfo<cr>", desc = "Lsp Info" }
       keys[#keys + 1] = { "gd", vim.lsp.buf.definition, desc = "Goto Definition", has = "definition" }
       keys[#keys + 1] = { "gr", vim.lsp.buf.references, desc = "References" }
       keys[#keys + 1] = { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" }
@@ -84,7 +84,6 @@ return {
         html = {},
         cssls = {},
         clangd = {},
-        pyright = {},
       })
       opts.servers["vuels"] = nil
     end,
