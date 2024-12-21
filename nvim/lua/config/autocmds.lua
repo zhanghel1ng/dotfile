@@ -66,6 +66,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
       " hi! link NormalFloat Normal
       hi DapBreakpoint guifg='#993939'
       " hi! link WinSeparator Normal
+      hi! link BqfPreviewFloat Normal
       hi! link NonText Normal
       hi! link leetcode_normal Normal
       hi! link NoiceCmdlinePopupBorder Normal
@@ -96,6 +97,8 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
       hi! link DiagnosticFloatingInfo  DiagnosticInfo
       hi! link DiagnosticFloatingHint  DiagnosticHint
       hi! link DiagnosticFloatingOk  DiagnosticOk
+      hi! link SnacksIndent IndentBlankLineChar
+      hi! link SnacksIndentScope IndentBlankLineContextChar
     ]])
   end,
 })
@@ -134,4 +137,30 @@ vim.cmd([[
       hi! link DiagnosticFloatingInfo  DiagnosticInfo
       hi! link DiagnosticFloatingHint  DiagnosticHint
       hi! link DiagnosticFloatingOk  DiagnosticOk
+      hi! link SnacksIndent IndentBlankLineChar
+      hi! link SnacksIndentScope IndentBlankLineContextChar
     ]])
+-- terminal
+--
+
+-- 自动关闭行号和标记列，并进入插入模式
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    -- 关闭行号和标记列
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = "no"
+    -- 自动进入插入模式
+    vim.cmd("startinsert")
+    local opts = { buffer = 0 }
+    vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+    -- vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+    -- vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+    -- vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+    -- vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+    -- vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+    -- vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+  end,
+})
+

@@ -3,7 +3,7 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      local lsps = { "typescript-language-server", "clangd", "html-lsp", "css-lsp", "codelldb" }
+      local lsps = { "clangd", "html-lsp", "css-lsp", "codelldb" }
       vim.list_extend(opts.ensure_installed, lsps)
     end,
     keys = {
@@ -84,8 +84,8 @@ return {
         html = {},
         cssls = {},
         clangd = {},
+        vuels = {},
       })
-      opts.servers["vuels"] = nil
     end,
   },
   {
@@ -113,13 +113,19 @@ return {
   {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
+    opts = {
+      preview = {
+        --INFO:neovim winblend选项和浮动窗口背景透明冲突导致浮动窗口背景为黑色
+        winblend = 0,
+      },
+    },
   },
   {
     "junegunn/fzf",
     ft = "qf",
-    build = function()
-      vim.fn["fzf#install"]()
-    end,
+    -- build = function()
+    --   vim.fn["fzf#install"]()
+    -- end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -162,6 +168,12 @@ return {
           return vim_item
         end,
       })
+      -- INFO:neovim winblend选项和浮动窗口背景透明冲突导致浮动窗口背景为黑色
+      -- opts.window = {
+      --   documentation = {
+      --     winblend = 0,
+      --   },
+      -- }
     end,
   },
   {
@@ -195,4 +207,7 @@ return {
       },
     },
   },
+  -- {
+  --   "HiPhish/rainbow-delimiters.nvim"
+  -- }
 }

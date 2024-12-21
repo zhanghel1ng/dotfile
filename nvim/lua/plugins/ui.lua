@@ -36,6 +36,10 @@ return {
     end,
   },
   {
+    "Mofiqul/vscode.nvim",
+    lazy = true,
+  },
+  {
     "rebelot/kanagawa.nvim",
     lazy = true,
     config = function()
@@ -187,8 +191,8 @@ return {
           -- "BufferLineBackground",
           -- "BufferLineSeparator",
           -- "BufferLineIndicatorSelected",
-          "FloatBorder",
-          "NormalFloat",
+          -- "FloatBorder",
+          -- "NormalFloat",
           "NeoTreeNormal",
           "NeoTreeNormalNC",
           "NeoTreeEndOfBuffer",
@@ -222,6 +226,7 @@ return {
     config = function()
       vim.g.everforest_disable_italic_comment = 1
       vim.g.everforest_cursor = "red"
+      -- vim.g.everforest_transparent_background = 1
     end,
   },
   { "sainnhe/gruvbox-material", lazy = true },
@@ -233,30 +238,14 @@ return {
     end,
   },
   {
-    "nvimdev/dashboard-nvim",
-    event = "vimEnter",
-    opts = function(_, opts)
-      local logo = [[
-██╗   ██╗███████╗ ██████╗ ██████╗ ██████╗ ███████╗
-██║   ██║██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝
-██║   ██║███████╗██║     ██║   ██║██║  ██║█████╗  
-╚██╗ ██╔╝╚════██║██║     ██║   ██║██║  ██║██╔══╝  
- ╚████╔╝ ███████║╚██████╗╚██████╔╝██████╔╝███████╗
-  ╚═══╝  ╚══════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
-    ]]
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
-    end,
-  },
-  {
     "onsails/lspkind.nvim",
     lazy = true,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "catppuccin",
-      colorscheme = "everforest",
+      -- colorscheme = "gruvbox",
+      colorscheme = "vscode",
       icons = {
         diagnostics = {
           Hint = "󰌵 ",
@@ -294,4 +283,34 @@ return {
       },
     },
   },
+  -- {
+  --   "folke/snacks.nvim",
+  --   opts = {
+  --     -- scroll = { enabled = false },
+  --     -- indent = { enabled = false },
+  --   },
+  -- },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   enabled = true,
+  -- },
+  -- {
+  --   "akinsho/toggleterm.nvim",
+  --   version = "*",
+  --   config = function()
+  --     require("toggleterm").setup({
+  --       direction = "tab",
+  --       open_mapping = [[<c-\]],
+  --       close_on_exit = true,
+  --       float_opts = {
+  --         border = "curved",
+  --         winblend = 0,
+  --         highlights = {
+  --           border = "Normal",
+  --           background = "Normal",
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
 }

@@ -7,7 +7,7 @@ local del = vim.keymap.del
 
 del("n", "<leader>l")
 del("n", "<leader>L")
-del({ "n", "v" }, "<leader>cf")
+-- del({ "n", "v" }, "<leader>cf")
 del("n", "<leader>cd")
 
 set("n", "<leader>a", "<cmd>Lazy<cr>", { desc = "Lazy" })
