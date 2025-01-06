@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
       hi DapBreakpoint guifg='#993939'
       " hi! link WinSeparator Normal
       hi! link BqfPreviewFloat Normal
-      hi! link NonText Normal
+      " hi! link NonText Normal
       hi! link leetcode_normal Normal
       hi! link NoiceCmdlinePopupBorder Normal
       hi! link NoiceCmdlinePopupTitle Normal
@@ -107,7 +107,7 @@ vim.cmd([[
       " hi! link NormalFloat Normal
       hi DapBreakpoint guifg='#993939'
       " hi! link WinSeparator Normal
-      hi! link NonText Normal
+      " hi! link NonText Normal
       hi! link leetcode_normal Normal
       hi! link NoiceCmdlinePopupBorder Normal
       hi! link NoiceCmdlinePopupTitle Normal

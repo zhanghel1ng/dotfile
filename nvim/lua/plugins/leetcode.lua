@@ -1,10 +1,12 @@
+local leet_arg = "leetcode.nvim"
 return {
   {
     "kawre/leetcode.nvim",
+    lazy = leet_arg ~= vim.fn.argv(0, -1),
     build = ":TSUpdate html",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim", -- telescope 所需
+      "ibhagwan/fzf-lua",
       "MunifTanjim/nui.nvim",
 
       -- 可选

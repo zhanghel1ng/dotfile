@@ -116,7 +116,7 @@ return {
     opts = {
       preview = {
         --INFO:neovim winblend选项和浮动窗口背景透明冲突导致浮动窗口背景为黑色
-        winblend = 0,
+        -- winblend = 0,
       },
     },
   },

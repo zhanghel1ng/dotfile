@@ -283,13 +283,13 @@ return {
       },
     },
   },
-  -- {
-  --   "folke/snacks.nvim",
-  --   opts = {
-  --     -- scroll = { enabled = false },
-  --     -- indent = { enabled = false },
-  --   },
-  -- },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      scroll = { enabled = false },
+      -- indent = { enabled = false },
+    },
+  },
   -- {
   --   "lukas-reineke/indent-blankline.nvim",
   --   enabled = true,

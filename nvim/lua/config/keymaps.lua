@@ -23,11 +23,10 @@ set("n", "<leader>pp", "<cmd>TransparentToggle<cr>", { desc = "toggle transparen
 
 local wk = require("which-key")
 wk.register({
-  l = { name = "lsp" },
-  h = { name = "git" },
-  g = { name = "lazygit" },
-}, { prefix = "<leader>" })
-
+  { "<leader>g", group = "lazygit" },
+  { "<leader>h", group = "git" },
+  { "<leader>l", group = "lsp" },
+})
 if vim.g.vscode then
   local vscode = require("vscode-neovim")
   -- find
