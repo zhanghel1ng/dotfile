@@ -185,28 +185,28 @@ return {
     "folke/neoconf.nvim",
     enabled = false,
   },
-  {
-    "MeanderingProgrammer/markdown.nvim",
-    enabled = false,
-    opts = {
-      code = {
-        enabled = true,
-        sign = false,
-        style = "normal",
-        position = "left",
-        disable_background = { "diff" },
-        width = "full",
-        left_pad = 0,
-        right_pad = 0,
-        min_width = 0,
-        border = "thin",
-        above = "▄",
-        below = "▀",
-        highlight = "RenderMarkdownCode",
-        highlight_inline = "RenderMarkdownCodeInline",
-      },
-    },
-  },
+  -- {
+  --   "MeanderingProgrammer/markdown.nvim",
+  --   enabled = false,
+  --   opts = {
+  --     code = {
+  --       enabled = true,
+  --       sign = false,
+  --       style = "normal",
+  --       position = "left",
+  --       disable_background = { "diff" },
+  --       width = "full",
+  --       left_pad = 0,
+  --       right_pad = 0,
+  --       min_width = 0,
+  --       border = "thin",
+  --       above = "▄",
+  --       below = "▀",
+  --       highlight = "RenderMarkdownCode",
+  --       highlight_inline = "RenderMarkdownCodeInline",
+  --     },
+  --   },
+  -- },
   -- {
   --   "HiPhish/rainbow-delimiters.nvim"
   -- }

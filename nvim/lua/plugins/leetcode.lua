@@ -1,4 +1,4 @@
-local leet_arg = "leetcode.nvim"
+local leet_arg = "leet"
 return {
   {
     "kawre/leetcode.nvim",
