@@ -63,6 +63,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   callback = function()
     vim.cmd([[
       hi! link FloatBorder Normal
+      hi! link NeoTreeIndentMarker NeoTreeFadeText1
       " hi! link NormalFloat Normal
       hi DapBreakpoint guifg='#993939'
       " hi! link WinSeparator Normal
@@ -112,6 +113,7 @@ vim.cmd([[
       hi! link NoiceCmdlinePopupBorder Normal
       hi! link NoiceCmdlinePopupTitle Normal
       hi! link NoiceCmdlineIcon Normal
+      hi! link NeoTreeIndentMarker NeoTreeFadeText1
       hi DiagnosticSignHint guifg='#FFD700'
       hi DiagnosticSignError guifg='#f85149'
       hi DiagnosticSignWarn guifg='#d29922'
