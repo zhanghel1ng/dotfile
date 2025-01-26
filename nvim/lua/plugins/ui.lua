@@ -2,6 +2,7 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    enabled = false,
     -- enabled = function()
     --   if vim.g.neovide then
     --     return false
@@ -45,7 +46,7 @@ return {
     config = function()
       require("kanagawa").setup({
         compile = false, -- enable compiling the colorscheme
-        undercurl = false, -- enable undercurls
+        undercurl = true, -- enable undercurls
         commentStyle = { italic = false },
         functionStyle = {},
         keywordStyle = { italic = false },
@@ -110,22 +111,6 @@ return {
         },
       },
     },
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = true,
-    opts = {},
-    config = function()
-      require("gruvbox").setup({
-        bold = false,
-        italic = {
-          strings = false,
-          emphasis = false,
-          comments = false,
-          folds = false,
-        },
-      })
-    end,
   },
   {
     "sainnhe/sonokai",
@@ -229,10 +214,24 @@ return {
       -- vim.g.everforest_transparent_background = 1
     end,
   },
-  { "sainnhe/gruvbox-material", lazy = true },
+  {
+    "sainnhe/gruvbox-material",
+    lazy = true,
+    config = function()
+      -- vim.g.gruvbox_material_enable_italic = false
+      vim.g.gruvbox_material_disable_italic_comment = true
+      -- vim.g.gruvbox_material_foreground = "origin"
+      -- vim.g.gruvbox_material_enable_bold = true
+      -- require("lualine").setup({
+      --   options = {
+      --     theme = "gruvbox-material",
+      --   },
+      -- })
+    end,
+  },
   {
     "norcalli/nvim-colorizer.lua",
-    ft = { "vue", "css", "html", "js", "ts", "lua" },
+    -- ft = { "vue", "css", "html", "js", "ts", "lua" },
     config = function()
       require("colorizer").setup()
     end,
@@ -244,8 +243,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "gruvbox",
-      colorscheme = "vscode",
+      colorscheme = "gruvbox-material",
+      -- colorscheme = "vscode",
       icons = {
         diagnostics = {
           Hint = "󰌵 ",
@@ -286,8 +285,8 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
-      scroll = { enabled = false },
-      -- indent = { enabled = false },
+      -- scroll = { enabled = false },
+      indent = { enabled = false },
     },
   },
   -- {
@@ -313,4 +312,14 @@ return {
   --     })
   --   end,
   -- },
+  {
+    "shaunsingh/nord.nvim",
+    config = function() end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+
+    },
+  },
 }
