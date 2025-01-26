@@ -56,5 +56,8 @@
         "C:\\Users\\zhang\\AppData\\Local\\nvim-data\\lazy\\neoconf.nvim\\types/lua",
         "${3rd}/luv/library"
     ],
-    "workspace.checkThirdParty": "Disable"
+    "workspace.checkThirdParty": "Disable",
+    "diagnostics.globals": [
+        "vim"
+    ]
 }
