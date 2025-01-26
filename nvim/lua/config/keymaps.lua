@@ -9,6 +9,32 @@ del("n", "<leader>l")
 del("n", "<leader>L")
 -- del({ "n", "v" }, "<leader>cf")
 del("n", "<leader>cd")
+del("n", "<leader>ft")
+del("n", "<leader>fT")
+del("n", "<c-/>")
+del("n", "<c-_>")
+del("t", "<c-/>")
+del("t", "<c-_>")
+del("n","<c-s>")
+
+function toggleHorizontal()
+  require("toggleterm.terminal").Terminal:new({ dir = LazyVim.root() }):toggle()
+end
+
+function toggleVertical()
+  require("toggleterm.terminal").Terminal:new({ dir = LazyVim.root(), direction = "vertical" }):toggle()
+end
+function toggleFloat()
+  require("toggleterm.terminal").Terminal:new({ dir = LazyVim.root(), direction = "float" }):toggle()
+end
+
+set("n", "<leader>ft", "<cmd>lua toggleHorizontal()<cr>", { desc = "Terminal (Horizontal)" })
+set("n", "<leader>fT", "<cmd>lua toggleVertical()<cr>", { desc = "Terminal (Vertical)" })
+set("n", "<C-t>", "<cmd>lua toggleFloat()<cr>", { desc = "Terminal (Float)" })
+set("n", "<c-\\>","<cmd>ToggleTerm<cr>",{desc = "Toggle Terminal"})
+set("t", "<c-\\>","<cmd>ToggleTerm<cr>",{desc = "Toggle Terminal"})
+set({"n","t"},"<c-s>","<cmd>TermSelect<cr>")
+
 
 set("n", "<leader>a", "<cmd>Lazy<cr>", { desc = "Lazy" })
 set("n", "<leader>A", function()
