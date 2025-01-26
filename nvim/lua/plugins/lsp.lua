@@ -135,79 +135,49 @@ return {
       vim.list_extend(opts.ensure_installed, { "rust", "go", "css", "scss", "html", "vue" })
     end,
   },
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    opts = function(_, opts)
-      local lspkind = require("lspkind")
-      lspkind.init({
-        -- symbol_map = require("lazyvim.config").icons.kinds
-        -- preset = 'codicons',
-      })
-      -- opts.formatting = {
-      --   format = function(entry, item)
-      --     print(entry.source)
-      --     local icons = require("lazyvim.config").icons.kinds
-      --     item.menu = ""
-      --     if icons[item.kind] then
-      --       item.kind = icons[item.kind] .. item.kind
-      --     end
-      --     return item
-      --   end,
-      -- }
-      opts.formatting.format = lspkind.cmp_format({
-        with_text = true,
-        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-        ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-
-        -- The function below will be called before any actual modifications from lspkind
-        -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-        before = function(_, vim_item)
-          -- vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
-          vim_item.menu = ""
-          return vim_item
-        end,
-      })
-      -- INFO:neovim winblend选项和浮动窗口背景透明冲突导致浮动窗口背景为黑色
-      -- opts.window = {
-      --   documentation = {
-      --     winblend = 0,
-      --   },
-      -- }
-    end,
-  },
-  {
-    "lukas-reineke/headlines.nvim",
-    enabled = false,
-    opts = {},
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   event = "InsertEnter",
+  --   opts = function(_, opts)
+  --     local lspkind = require("lspkind")
+  --     lspkind.init({
+  --       -- symbol_map = require("lazyvim.config").icons.kinds
+  --       -- preset = 'codicons',
+  --     })
+  --     -- opts.formatting = {
+  --     --   format = function(entry, item)
+  --     --     print(entry.source)
+  --     --     local icons = require("lazyvim.config").icons.kinds
+  --     --     item.menu = ""
+  --     --     if icons[item.kind] then
+  --     --       item.kind = icons[item.kind] .. item.kind
+  --     --     end
+  --     --     return item
+  --     --   end,
+  --     -- }
+  --     opts.formatting.format = lspkind.cmp_format({
+  --       with_text = true,
+  --       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+  --       ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+  --
+  --       -- The function below will be called before any actual modifications from lspkind
+  --       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+  --       before = function(_, vim_item)
+  --         -- vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+  --         vim_item.menu = ""
+  --         return vim_item
+  --       end,
+  --     })
+  --     -- INFO:neovim winblend选项和浮动窗口背景透明冲突导致浮动窗口背景为黑色
+  --     -- opts.window = {
+  --     --   documentation = {
+  --     --     winblend = 0,
+  --     --   },
+  --     -- }
+  --   end,
+  -- },
   {
     "folke/neoconf.nvim",
     enabled = false,
   },
-  -- {
-  --   "MeanderingProgrammer/markdown.nvim",
-  --   enabled = false,
-  --   opts = {
-  --     code = {
-  --       enabled = true,
-  --       sign = false,
-  --       style = "normal",
-  --       position = "left",
-  --       disable_background = { "diff" },
-  --       width = "full",
-  --       left_pad = 0,
-  --       right_pad = 0,
-  --       min_width = 0,
-  --       border = "thin",
-  --       above = "▄",
-  --       below = "▀",
-  --       highlight = "RenderMarkdownCode",
-  --       highlight_inline = "RenderMarkdownCodeInline",
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "HiPhish/rainbow-delimiters.nvim"
-  -- }
 }
