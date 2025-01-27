@@ -318,8 +318,66 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
+    enabled = true,
     opts = {
-
+      options = {
+        theme = "none", -- 使用主题颜色，但覆盖背景色
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        -- 全局禁用背景色
+        disabled_filetypes = {},
+        globalstatus = true,
+      },
+      sections = {
+        lualine_a = {
+          {
+            "mode",
+            color = { fg = "NONE", bg = "None" }, -- bg 设为 None
+          },
+        },
+        lualine_b = {
+          { "branch", color = { fg = "None", bg = "None" } },
+          { "diff", color = { bg = "None" } },
+          {
+            "diagnostics",
+            color = { bg = "None" },
+            symbols = {
+              error = LazyVim.config.icons.diagnostics.Error,
+              warn = LazyVim.config.icons.diagnostics.Warn,
+              info = LazyVim.config.icons.diagnostics.Info,
+              hint = LazyVim.config.icons.diagnostics.Hint,
+            },
+          },
+          -- color = { bg = "None" }, -- 组件背景透明
+        },
+        lualine_c = {
+          {
+            "filename",
+            path = 1, -- 显示完整路径
+            color = { bg = "None" }, -- 文件名背景透明
+          },
+        },
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { { "progress", color = { fg = "None", bg = "None" } } },
+        lualine_z = { { "location", color = { fg = "None", bg = "None" } } },
+      },
+      -- 对 inactive 部分同样处理
+      inactive_sections = {
+        lualine_a = { "filename" },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+      extensions = {
+        require("plugins.lualine_extensions.fzf"),
+        require("plugins.lualine_extensions.lazy"),
+        require("plugins.lualine_extensions.toggleterm"),
+        require("plugins.lualine_extensions.man"),
+        require("plugins.lualine_extensions.neo-tree"),
+        require("plugins.lualine_extensions.quickfix"),
+      },
     },
   },
 }

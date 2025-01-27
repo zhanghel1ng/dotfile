@@ -14,6 +14,8 @@ opt.jumpoptions = "stack"
 opt.list = false
 g.trouble_lualine = false
 opt.showcmd = false -- 禁用按键显示
+-- opt.showmode = true
+-- opt.ruler = true
 g.snacks_animate = false
 if g.neovide then
   g.neovide_cursor_animation_length = 0
