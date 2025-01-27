@@ -377,6 +377,7 @@ return {
         require("plugins.lualine_extensions.man"),
         require("plugins.lualine_extensions.neo-tree"),
         require("plugins.lualine_extensions.quickfix"),
+        require("plugins.lualine_extensions.mason"),
       },
     },
   },
