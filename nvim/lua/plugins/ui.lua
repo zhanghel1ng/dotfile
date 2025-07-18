@@ -18,9 +18,17 @@ return {
       --   },
       --   opts = {skip = true}
       -- })
-      require("notify").setup({
-        background_colour = "Normal",
-      })
+      -- require("notify").setup({
+      --   background_colour = "Normal",
+      -- })
+      --
+      -- vim.cmd([[
+      --   hi! link NoiceCmdlinePopupBorder FloatBorder
+      -- ]])
+      opts.cmdline = {
+        enabled = false,
+        view = "cmdline",
+      }
       opts.presets.lsp_doc_border = false
     end,
   },
@@ -59,14 +67,29 @@ return {
           palette = {},
           theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
         },
-        overrides = function(colors) -- add/modify highlights
-          return {}
-        end,
-        theme = "wave", -- Load "wave" theme when 'background' option is not set
-        background = { -- map the value of 'background' option to a theme
-          dark = "dragon", -- try "dragon" !
-          light = "lotus",
-        },
+        -- overrides = function(colors) -- add/modify highlights
+        --   local theme = colors.theme
+        --   return {
+        --     NormalFloat = { bg = "none" },
+        --     FloatBorder = { bg = "none" },
+        --     FloatTitle = { bg = "none" },
+        --
+        --     -- Save an hlgroup with dark background and dimmed foreground
+        --     -- so that you can use it where your still want darker windows.
+        --     -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+        --     NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+        --
+        --     -- Popular plugins that open floats will link to NormalFloat by default;
+        --     -- set their background accordingly if you wish to keep them dark and borderless
+        --     LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+        --     MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+        --   }
+        -- end,
+        theme = "lotus", -- Load "wave" theme when 'background' option is not set
+        -- background = { -- map the value of 'background' option to a theme
+        --   dark = "dragon", -- try "dragon" !
+        --   light = "lotus",
+        -- },
       })
     end,
   },
@@ -74,7 +97,7 @@ return {
     "catppuccin/nvim",
     lazy = true,
     opts = {
-      flavour = "mocha",
+      -- flavour = "mocha",
       term_colors = true,
       transparent_background = false,
       no_italic = true,
@@ -119,7 +142,7 @@ return {
       -- vim.g.sonokai_style = "Shusia"
     end,
   },
-  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = true, priority = 1000 },
   { "jacoborus/tender.vim", lazy = true },
   { "tiagovla/tokyodark.nvim", lazy = true },
   { "projekt0n/github-nvim-theme", lazy = true },
@@ -149,7 +172,6 @@ return {
   { "B4mbus/oxocarbon-lua.nvim", lazy = true },
   { "tomasr/molokai", lazy = true },
   { "rose-pine/neovim", lazy = true },
-  { "shaunsingh/nord.nvim", lazy = true },
   {
     "tanvirtin/monokai.nvim",
     lazy = true,
@@ -162,7 +184,7 @@ return {
   },
   {
     "xiyaowong/nvim-transparent",
-    lazy = false,
+    lazy = true,
     enabled = true,
     config = function()
       require("transparent").setup({
@@ -204,6 +226,13 @@ return {
       })
     end,
   },
+  -- {
+  --   "morhetz/gruvbox",
+  --   config = function()
+  --     -- vim.g.gruvbox_contrast_dark = "hard"
+  --   end,
+  -- },
+  { "ellisonleao/gruvbox.nvim", lazy = true, priority = 1000, config = true },
   { "dracula/vim", lazy = true },
   {
     "sainnhe/everforest",
@@ -232,6 +261,7 @@ return {
   {
     "norcalli/nvim-colorizer.lua",
     -- ft = { "vue", "css", "html", "js", "ts", "lua" },
+    lazy = true,
     config = function()
       require("colorizer").setup()
     end,
@@ -243,8 +273,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
-      -- colorscheme = "vscode",
+      -- colorscheme = "catppuccin",
+      colorscheme = "nord",
       icons = {
         diagnostics = {
           Hint = "󰌵 ",
@@ -314,71 +344,75 @@ return {
   -- },
   {
     "shaunsingh/nord.nvim",
-    config = function() end,
+    lazy = true,
+    config = function()
+      vim.g.nord_italic = false
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
     enabled = true,
     opts = {
-      options = {
-        theme = "none", -- 使用主题颜色，但覆盖背景色
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        -- 全局禁用背景色
-        disabled_filetypes = {},
-        globalstatus = true,
-      },
-      sections = {
-        lualine_a = {
-          {
-            "mode",
-            color = { fg = "NONE", bg = "None" }, -- bg 设为 None
-          },
-        },
-        lualine_b = {
-          { "branch", color = { fg = "None", bg = "None" } },
-          { "diff", color = { bg = "None" } },
-          {
-            "diagnostics",
-            color = { bg = "None" },
-            symbols = {
-              error = LazyVim.config.icons.diagnostics.Error,
-              warn = LazyVim.config.icons.diagnostics.Warn,
-              info = LazyVim.config.icons.diagnostics.Info,
-              hint = LazyVim.config.icons.diagnostics.Hint,
-            },
-          },
-          -- color = { bg = "None" }, -- 组件背景透明
-        },
-        lualine_c = {
-          {
-            "filename",
-            path = 1, -- 显示完整路径
-            color = { bg = "None" }, -- 文件名背景透明
-          },
-        },
-        lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_y = { { "progress", color = { fg = "None", bg = "None" } } },
-        lualine_z = { { "location", color = { fg = "None", bg = "None" } } },
-      },
-      -- 对 inactive 部分同样处理
-      inactive_sections = {
-        lualine_a = { "filename" },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
-      },
-      extensions = {
-        require("plugins.lualine_extensions.fzf"),
-        require("plugins.lualine_extensions.lazy"),
-        require("plugins.lualine_extensions.toggleterm"),
-        require("plugins.lualine_extensions.man"),
-        require("plugins.lualine_extensions.neo-tree"),
-        require("plugins.lualine_extensions.quickfix"),
-        require("plugins.lualine_extensions.mason"),
-      },
+      -- options = {
+      --   -- theme = "none", -- 使用主题颜色，但覆盖背景色
+      --   component_separators = { left = "", right = "" },
+      --   section_separators = { left = "", right = "" },
+      --   -- 全局禁用背景色
+      --   disabled_filetypes = {},
+      --   globalstatus = true,
+      -- },
+      -- sections = {
+      --   lualine_a = {
+      --     {
+      --       "mode",
+      --       color = { fg = "NONE", bg = "None" }, -- bg 设为 None
+      --     },
+      --   },
+      --   lualine_b = {
+      --     { "branch", color = { fg = "None", bg = "None" } },
+      --     { "diff", color = { bg = "None" } },
+      --     {
+      --       "diagnostics",
+      --       color = { bg = "None" },
+      --       symbols = {
+      --         error = LazyVim.config.icons.diagnostics.Error,
+      --         warn = LazyVim.config.icons.diagnostics.Warn,
+      --         info = LazyVim.config.icons.diagnostics.Info,
+      --         hint = LazyVim.config.icons.diagnostics.Hint,
+      --       },
+      --     },
+      --     -- color = { bg = "None" }, -- 组件背景透明
+      --   },
+      --   lualine_c = {
+      --     {
+      --       "filename",
+      --       path = 1, -- 显示完整路径
+      --       color = { bg = "None" }, -- 文件名背景透明
+      --     },
+      --   },
+      --   lualine_x = { "encoding", "fileformat", "filetype" },
+      --   lualine_y = { { "progress", color = { fg = "None", bg = "None" } } },
+      --   lualine_z = { { "location", color = { fg = "None", bg = "None" } } },
+      -- },
+      -- -- 对 inactive 部分同样处理
+      -- inactive_sections = {
+      --   lualine_a = { "filename" },
+      --   lualine_b = {},
+      --   lualine_c = {},
+      --   lualine_x = {},
+      --   lualine_y = {},
+      --   lualine_z = {},
+      -- },
+      -- extensions = {
+      --   require("plugins.lualine_extensions.fzf"),
+      --   require("plugins.lualine_extensions.lazy"),
+      --   require("plugins.lualine_extensions.toggleterm"),
+      --   require("plugins.lualine_extensions.man"),
+      --   require("plugins.lualine_extensions.neo-tree"),
+      --   require("plugins.lualine_extensions.quickfix"),
+      --   require("plugins.lualine_extensions.mason"),
+      --   require("plugins.lualine_extensions.avant"),
+      -- },
     },
   },
 }

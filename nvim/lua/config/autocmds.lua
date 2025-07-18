@@ -14,6 +14,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.wo.conceallevel = 0
   end,
 })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "vue", "css","scss","sass" },
+  callback = function()
+    vim.cmd([[RenderMarkdown disable]])
+  end,
+})
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
   once = true,
   callback = function()

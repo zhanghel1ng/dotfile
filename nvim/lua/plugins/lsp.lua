@@ -84,7 +84,7 @@ return {
         html = {},
         cssls = {},
         clangd = {},
-        vuels = {},
+        -- vuels = {},
       })
     end,
   },
